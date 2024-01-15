@@ -1,0 +1,107 @@
+\documentclass[11pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{question}{Question}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\teq}{\trianglelefteq}
+
+\title{MATH 3022 Algebra II: Lecture 1}
+\author{Joe Tran}
+\date{Winter 2024}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\textbf{MATH 3022 Algebra II} \hfill \textbf{Lecture 1} \\
+\textsc{Lecture} \hfill \textsc{Joe Tran}
+
+\section{Recall From MATH 3021}
+
+\begin{definition}\label{definition:1}
+    Let $G$ be a set and binary operation $* : G \times G \to G$. The pair $(G, *)$ is called a group if
+    \begin{enumerate}
+        \item (Associative) For all $x, y, z \in G$, $$x * (y * z) = (x * y) * z$$
+        \item (Identity) There exists an $e \in G$ such that for all $x \in G$, $$x * e = e * x = x$$
+        \item (Inverse) For every $x \in G$, there exists an inverse $x^{-1} \in G$ such that $$x * x^{-1} = x^{-1} * x = e$$
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}\label{definition:2}
+    A group $(G, *)$ is called an abelian group if for every $x, y \in G$, $$x * y = y * x$$
+\end{definition}
+
+\begin{example}\label{example:1}
+    Below are examples of groups.
+    \begin{itemize}
+        \item $(\Z, +)$, $(\Q, \cdot)$, $(\R, \cdot)$, $(\C, \cdot)$
+        \item $GL_n(\F)$, $SL_n(\F)$
+        \item $(\Z_n, +_n)$, $(n\Z, +)$
+        \item $(\F[x], +)$ (we will study this when talking about polynomials)\footnote{The notation $\F$ means the field of $\Q$, $\R$ or $\C$.}
+        \item $S_n$, $D_n$, $A_n$
+    \end{itemize}
+\end{example}
+
+\begin{remark}\label{remark:1}
+    The examples $\Z$, $\Q$, $\R$, $\C$, $\Z_n$, $n\Z$, $\F[x]$ and $\M_n(\F)$ are all abelian groups under addition. Furthermore, we have a type of ``multiplication'' operation for these examples. This second operation called ``multiplication'' will be used in Ring Theory.
+\end{remark}
+
+\begin{question}\label{question:1}
+    What are the properties of ``multiplication'' for the sets in Remark \ref{remark:1}?
+\end{question}
+
+Let $S$ be any of the sets in Remark \ref{remark:1}. We require that
+\begin{enumerate}
+    \item Associativity: For all $x, y, z \in S$, $x(yz) = (xy)z$.
+    \item Distributive: For all $x, y, z \in S$, $x(y + z) = xy + xz$ and $(x + y)z = xz + yz$
+\end{enumerate}
+
+\begin{definition}\label{definition:3}
+    Let $R$ be a set with two binary operations $+$ and $\cdot$. Then the set $R$ is called a ring if the following are satisfied:
+    \begin{enumerate}
+        \item For all $x, y \in R$, $$x + y = y + x$$
+        \item For all $x, y, z \in R$, $$(x + y) + z = x + (y + z)$$
+        \item There exists a $0 \in R$ such that for all $x \in R$, $$x + 0 = 0 + x = x$$
+        \item For every $x \in R$, there exists an element $-x \in R$ such that $$x + (-x) = 0$$
+        \item For all $x, y, z \in R$, $(xy)z = x(yz)$
+        \item For all $x, y, z \in R$, $x(y + z) = xy + xz$ and $(x + y)z = xz + yz$
+    \end{enumerate}
+\end{definition}
+
+\begin{example}\label{example:2}
+    The following are examples of rings.
+    \begin{itemize}
+        \item $\Z$, $\Q$, $\R$, $\C$, $\Z_n$, $n\Z$ with the usual addition $+$ and multiplication $\cdot$
+        \item $\M_n(\F)$ with matrix addition $+$ and multiplication $\cdot$.
+        \item $\CC([a, b])$ with usual addition $+$ and multiplication $\cdot$
+        \item $\Z_n$ with modulo addition $+_n$ and modulo multiplication $\cdot_n$
+    \end{itemize}
+\end{example}
+
+Note that $GL_n(\F)$ is actually not a ring, because it is not closed under addition. In particular, if $A \in GL_n(\F)$, then $-A \in GL_n(\F)$, but $A + (-A) = 0 \notin GL_n(\F)$.
+
+\noindent \textbf{Further Readings:} Chapter 16, pg. 190-192
+
+\end{document}

@@ -1,0 +1,156 @@
+\documentclass[11pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{question}{Question}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\teq}{\trianglelefteq}
+\renewcommand{\mod}{\ \mathbf{mod} \ }
+
+\title{MATH 3022 Algebra II: Lecture 1}
+\author{Joe Tran}
+\date{Winter 2024}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\textbf{MATH 3022 Algebra II} \hfill \textbf{Lecture 2} \\
+\textsc{Lecture} \hfill \textsc{Joe Tran}
+
+\textbf{Recall:} We introduced the definition of a ring, and we mentioned how we require \emph{two} binary operations for a ring, namely an ``addition'' operation $+$ and a ``multiplication'' operator $\cdot$.
+
+\begin{definition}\label{definition:1}
+    Let $R$ be a set and let $+$ and $\cdot$ be operations of ``addition'' and ``multiplication''. Then $R$ is said to be a \emph{ring}, if
+    \begin{enumerate}
+        \item $(R, +)$ is an abelian group.
+        \item For every $x, y, z \in R$, $x(yz) = (xy)z$
+        \item For every $x, y, z \in R$, $x(y + z) = xy + xz$ and $(x + y)z = xz + yz$
+    \end{enumerate}
+\end{definition}
+
+\begin{example}\label{example:1}
+    The following are examples of rings:
+    \begin{itemize}
+        \item $\Z$, $\Q$, $\R$, $\C$, $\Z_n$, and $n\Z$, which are typical examples rings.
+        \item $\F[x]$
+        \item $\M_n(\F)$ which is the set of all $n \times n$ matrices with $\F$ entries.
+        \item $\H$ which is the set of quaternions, where
+        \begin{equation*}
+            \H = \left\{\begin{bmatrix} \alpha & \beta \\ -\overline{\beta} & -\overline{\alpha} \end{bmatrix} : \alpha = a + \mathbf{i}d, \beta = b + \mathbf{i}b \in \C\right\} = \left\{a + b\mathbf{i} + c\mathbf{j} + d\mathbf{k} : a, b, c, d \in \R\right\}
+        \end{equation*}
+    \end{itemize}
+\end{example}
+
+\begin{proposition}\label{proposition:1}
+    Let $R$ be a ring and let $x, y \in R$. Then
+    \begin{enumerate}
+        \item $x0 = 0x = 0$
+        \item $x(-y) = (-x)y = -xy$
+        \item $(-x)(-y) = xy$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    To prove (1), using the distributive property,
+    \begin{equation*}
+        x0 = x(0 + 0) = x0 + x0
+    \end{equation*}
+    and so $x0 = 0$. In a similar approach, it can be shown that $0x = 0$.
+
+    To show that (2) is true, observe that
+    \begin{equation*}
+        x(-y) + xy = x(-y + y) = x0 = 0
+    \end{equation*}
+    and similarly, $(-x)y = -xy$ as well.
+
+    Finally, to see that (3) is true, note that by (2), and using the associative property of ``multiplication''
+    \begin{equation*}
+        (-x)(-y) = -(x(-y)) = -(-xy) = xy
+    \end{equation*}
+    as desired.
+\end{proof}
+
+There are various types of rings that we will look at.
+
+\begin{definition}\label{definition:2}
+    A ring $R$ is said to be a \emph{commutative ring} if for every $x, y \in R$, $xy = yx$. That is, multiplication is also commutative.
+\end{definition}
+
+\begin{example}\label{example:2}
+    $\Z$, $\F$, $\Z_n$, $n\Z$, and $\F[x]$ are examples of commutative rings, but $\M_n(\F)$ and $\H$ are not.
+\end{example}
+
+\begin{definition}\label{definition:3}
+    A ring $R$ is said to be a \emph{ring with identity} if there exists $1 \in R$ with $1 \neq 0$ such that $x1 = 1x = x$ for all $x \in R$.
+\end{definition}
+
+\begin{example}\label{example:3}
+    $\Z$, $\F$, $\Z_n$, $R[x]$ (where $R$ is a ring), $\M_n(\F)$ and $\H$ are examples of rings with identity, but $n\Z$ is not a ring with an identity whenever $n \geq 2$. In particular, the identity of $R[x]$ is $1 = 1 + 0x$, and the identity for $\M_n(\F)$ is the identity matrix $I_n$.
+\end{example}
+
+Before we introduce the integral domain, we introduce the zero divisor.
+
+\begin{definition}\label{definition:4}
+    Let $R$ be a commutative ring. A nonzero element $x \in R$ is called a zero divisor if there exists a nonzero element $y \in R$ such that $xy = yx = 0$.
+\end{definition}
+
+\begin{example}\label{example:4}
+    Consider $\Z_8$ and take $2, 4 \in \Z_8$, which are both nonzero elements in $\Z_8$. Then
+    \begin{equation*}
+        2 \cdot_8 4 = 2 \cdot 4 \mod 8 = 8 \mod 8 = 0
+    \end{equation*}
+    Also, if we take $4, 6 \in \Z_8$, which are also both nonzero, then
+    \begin{equation*}
+        4 \cdot_8 6 = 4 \cdot 6 \mod 8 = 24 \mod 8 = 0
+    \end{equation*}
+\end{example}
+
+\begin{definition}\label{definition:5}
+    A commutative ring $R$ with identity is called an \emph{integral domain} if it does not contain nonzero divisors. Alternatively, $R$ is said to be an \emph{integral domain} if for every $x, y \in R$ such that $xy = 0$, then either $x = 0$ or $y = 0$.
+\end{definition}
+
+\begin{example}\label{example:5}
+    $\F$ and $\H$ are examples of integral domains. However, because $\M_n(\F)$ is not commutative, then it cannot be an integral domain.
+\end{example}
+
+\begin{example}\label{example:6}
+    Consider $\Z_n$ for $n \geq 2$ such that $n$ is not a prime number. Then $n = xy$ for some $x, y \in \Z$, so
+    \begin{equation*}
+        x \cdot_n y = x \cdot y \mod n = n \mod n = 0
+    \end{equation*}
+    so $\Z_n$ is not an integral domain. Consider if $n$ is prime, i.e. $n = p$. Then $\Z_p$ is both commutative and contains the identity. Suppose $x \cdot_p y = x \cdot y \mod p = 0$ in $\Z_p$. Then by definition, $p \mid xy$, so by Euclid's Lemma, either $p \mid x$ or $p \mid y$. That is, either $x = 0$ or $y = 0$. Therefore, $\Z_p$ has no zero divisors, and thus, is an integral domain.
+\end{example}
+
+\begin{proposition}\label{proposition:2}
+    $\Z_n$ is an integral domain whenever $n$ is prime.
+\end{proposition}
+
+\begin{example}\label{example:7}
+    Let $R$ be a ring that is either $\Z$, $\Z_n$ or $\F$. Is $R[x]$ an integral domain? For sure, the set $R[x]$ is a commutative ring with identity. So we check if it is an integral domain. Let $p(x)$ and $q(x)$ be polynomials in $R[x]$ such that $p(x)q(x) = 0$. [...]
+\end{example}
+
+
+\end{document}
