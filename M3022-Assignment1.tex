@@ -1,0 +1,75 @@
+\documentclass[11pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor}
+
+\theoremstyle{definition}\newtheorem{question}{Question}
+\theoremstyle{definition}\newtheorem*{solution}{Solution}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\teq}{\trianglelefteq}
+\DeclareMathOperator{\diag}{diag}
+
+\everymath{\displaystyle}
+
+\begin{document}
+
+\noindent \textbf{MATH 3022 Algebra II} \hfill \textbf{Homework Assignment 1} \\
+\textsc{Assignment} \hfill \textsc{Joe Tran}
+
+\begin{question}\label{question:1}
+    We define two operations $\boxplus$ and $\boxtimes$ on $\Z$ as
+    \begin{align*}
+        a \boxplus b &= a + b - 1 \\
+        a \boxtimes b &= ab - a - b + 2
+    \end{align*}
+    for $a, b \in \Z$.
+    \begin{itemize}
+        \item[(a)] Show that $\Z$ together with addition $\boxplus$ and multiplication $\boxtimes$ is a ring.
+        \item[(b)] Determine if this ring is
+        \begin{itemize}
+            \item[(i)] A commutative ring
+            \item[(ii)] A ring with identity
+            \item[(iii)] An integral domain.
+        \end{itemize}
+    \end{itemize}
+\end{question}
+
+\begin{question}
+    Let $\Z_n[i] = \{a + ib : a, b \in \Z_n, i^2 = -1\}$ denote the Gaussian integers modulo $n$.
+    \begin{itemize}
+        \item[(a)] Generate the multiplication table of $\Z_n[i]$ for $n = 2, 3, ..., 7$.
+        \item[(b)] Determine all integers $n \geq 2$ for which $\Z_n[i]$ is an integral domain, hence, a field.
+    \end{itemize}
+\end{question}
+
+\begin{question}
+    Let $R$ be a ring. Define the \emph{center of $R$} to be
+    \begin{equation*}
+        Z(R) = \{a \in R : ar = ra \ \text{for all $r \in R$}\}
+    \end{equation*}
+    Prove that $Z(R)$ is a commutative subring of $R$.
+\end{question}
+
+\begin{question}
+    An element $a$ is an \emph{idempotent} if $a^2 = a$.
+    \begin{itemize}
+        \item[(a)] Prove that the only idempotents in an integral domain are 0 and 1.
+        \item[(b)] Find a ring with an idempotent that is not equal to 0 nor 1.
+        \item[(c)] Let $R$ be a commutative ring with characteristic 2. Prove that the set $S = \{a \in R : a^2 = a\}$ is a subring of $R$.
+    \end{itemize}
+\end{question}
+
+
+\end{document}
