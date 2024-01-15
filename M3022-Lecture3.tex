@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem*{notation}{Notation}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{question}{Question}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\teq}{\trianglelefteq}
+\renewcommand{\mod}{\ \mathbf{mod} \ }
+
+\title{MATH 3022 Algebra II: Lecture 3}
+\author{Joe Tran}
+\date{Winter 2024}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\textbf{MATH 3022 Algebra II} \hfill \textbf{Lecture 3} \\
+\textsc{Lecture} \hfill \textsc{Joe Tran}
+
+\textbf{Recall:} An \emph{integral domain} is a commutative ring with identity that has no zero divisors. For example, $\Z$, $\F$\footnote{Where $\F = \Q$, $\R$, or $\C$}, $\Z_p$ are integral domains. Observe that if we let $D$ be an integral domain, and $a, b \in D$. If $ab = 0$, then either $a = 0$ or $b = 0$.
+
+We will come back to talk about the set $R[x]$, where $R$ is one of $\Z$, $\Q$, $\R$, $\C$ or $\Z_p$.
+
+\begin{proposition}[Cancellation Law]\label{proposition:1}
+    Let $D$ be a commutative ring with identity. Then $D$ is an integral domain if and only if for every nonzero $d \in D$ with $da = db$, then $a = b$.
+\end{proposition}
+
+\begin{proof}
+    ($\Rightarrow$) Assume that $D$ is an integral domain, and assume that $da = db$ with $d \neq 0$. Then $da + (-(db)) = db + (-(db)) = 0$, which implies that, by a known proposition, $da + d(-b) = 0$, and so by the distributive property, $d(a + (-b)) = 0$. Since $d \neq 0$, and because $D$ is an integral domain, then it must be the case that $a + (-b) = 0$. Finally, $a + (-b) + b = 0 + b$ would imply that $a = b$, as required.
+
+    ($\Leftarrow$) On the other hand, assume that for all $d \in D$ such that $d \neq 0$, $da = db$ implies $a = b$. Because $D$ is an integral domain, then if $da = 0$, we have that $da = d0$, and so by assumption, $a = 0$. Therefore, $d$ cannot be a zero divisor.
+\end{proof}
+
+\begin{definition}\label{definition:1}
+    Let $R$ be a commutative ring with identity. A \emph{polynomial} over a ring $R$ is an expression of the form
+    \begin{equation*}
+        f(x) = \sum_{i = 0}^{n} a_ix^i = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
+    \end{equation*}
+    where for $0 \leq i \leq n$, $a_i \in R$.
+\end{definition}
+
+\begin{notation}
+    If $f \in R[x]$ is a polynomial, we denote the \emph{degree of $f$} as $\deg(f)$. If $f$ is a polynomial of degree $n$, then the coefficient $a_n \in R$ is nonzero and is called the \emph{leading coefficient of $f$}. A polynomial is called \emph{monic} if the leading coefficient is 1.
+\end{notation}
+
+\begin{remark}\label{remark:1}
+    Note that in the sense of abstract algebra, we do not think about a polynomial expression as a function. Here, $x$ is an arbitrary symbol, or an object. In this case, we call $x$ the \emph{indeterminate}.
+\end{remark}
+
+\begin{definition}\label{definition:2}
+    We say that for two polynomials $p(x) = \sum_{i = 0}^{n} a_ix^i$ and $q(x) = \sum_{i = 0}^{m} b_ix^i$ in $R[x]$ are said to be \emph{equal}, if $n = m$, and for $0 \leq i \leq n$, $a_i = b_i$.
+\end{definition}
+
+$R[x]$ is a ring with addition over $R$ and polynomial multiplication over $R$. That is, we will add and multiply coefficients, with respect to the set $R$ we are working with.
+
+\begin{example}\label{example:1}
+    In $\Z_2[x]$, take $f(x) = 1 + x + x^2$, and $g(x) = x + x^2$. Then
+    \begin{align*}
+        (f + g)(x) &= (1 + x + x^2) + (x + x^2) \\
+        &= 1 + 0x + 0x^2 \\
+        &= 1
+    \end{align*}
+    and
+    \begin{align*}
+        (fg)(x) &= (1 + x + x^2)(x + x^2) \\
+        &= x + x^2 + x^3 + x^2 + x^3 + x^4 \\
+        &= x + 0x^2 + 0x^3 + x^4 \\
+        &= x + x^4
+    \end{align*}
+\end{example}
+
+In general, if $R$ is a commutative ring, then $R[x]$ is also commutative and if $R$ contains the identity, then $R[x]$ is also contains the same identity, i.e. contains the polynomial of degree zero.
+
+\end{document}
