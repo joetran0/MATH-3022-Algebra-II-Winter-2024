@@ -1,6 +1,6 @@
 \documentclass[11pt]{book}
 \usepackage[utf8]{inputenc}
-\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor, mathrsfs, multicol, array}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor, mathrsfs, multicol, array, polynom}
 \usepackage{makeidx}
 
 \theoremstyle{definition}\newtheorem{definition}[subsection]{Definition}
@@ -785,6 +785,158 @@ Suppose we want to consider polynomials of two or more variables. Let $R$ be a r
         &= \phi_{\alpha}(p(x)q(x))
     \end{align*}
 \end{proof}
+
+\section{The Division Algorithm for Polynomials}
+
+Recall that the division algorithm for integers says that if $a, b \in \Z$ with $b > 0$, then there exists unique $q, r \in \Z$ such that
+\begin{equation*}
+    a = bq + r
+\end{equation*}
+where $0 \leq r < b$. The algorithm for polynomials has several important consequences. The proof is very similar to the corresponding proof for integers.
+
+\begin{theorem}[The Division Algorithm]\label{theorem:2.2.1}\index{division algorithm}\index{division algorithm for polynomials}
+    Let $f(x)$ and $g(x)$ be polynomials in $\F[x]$ where $\F$ is a field and $g(x)$ is a nonzero polynomial. Then there exists unique $q(x), r(x) \in \F[x]$ such that
+    \begin{equation*}
+        f(x) = g(x)q(x) + r(x)
+    \end{equation*}
+    where either $\deg(r) < \deg(g)$, or $r(x)$ is the zero polynomial.
+\end{theorem}
+
+\begin{proof}
+    We will first consider the existence of $q(x)$ and $r(x)$. If $f(x)$ is the zero polynomial, then clearly,
+    \begin{equation*}
+        0 = 0 \cdot g(x) + 0
+    \end{equation*}
+    hence both $q$ and $r$ must also be the zero polynomial. On the other hand, let us assume that $f(x)$ is not the zero polynomial, and suppose that $\deg(f) = n$ and $\deg(g) = m$. If $m > n$, then we can let $q(x) = 0$ and $r(x) = f(x)$. Hence, we assume that $m \leq n$ and proceed by induction on $n$. If
+    \begin{align*}
+        f(x) &= a_nx^n + a_{n - 1}x^{n - 1} + \cdots + a_1x + a_0 \\
+        g(x) &= b_mx^m + b_{m - 1}x^{m - 1} + \cdots + b_1x + b_0
+    \end{align*}
+    the polynomial
+    \begin{equation*}
+        f'(x) = f(x) - \frac{a_n}{b_m}x^{n - m}g(x)
+    \end{equation*}
+    has degree less than $n$ or is the zero polynomial. By induction there exist polynomials $q'(x)$ and $r(x)$ such that
+    \begin{equation*}
+        f'(x) = q'(x)g(x) + r(x)
+    \end{equation*}
+    where $r(x) = 0$ or the degree of $r(x)$ is less than the degree of $g(x)$. Now let
+    \begin{equation*}
+        q(x) = q'(x) + \frac{a_n}{b_m}x^{n - m}
+    \end{equation*}
+    Then $f(x) = g(x)q(x) + r(x)$.
+
+    Now to show that $q(x)$ and $r(x)$ are unique, suppose that there exist two other polynomials $q_1(x)$ and $r_1(x)$ such that $f(x) = g(x)q_1(x) + r_1(x)$ with $\deg(r_1) < \deg(g)$ or $r_1(x) = 0$, so that
+    \begin{equation*}
+        f(x) = g(x)q(x) + r(x) = g(x)q_1(x) + r_1(x)
+    \end{equation*}
+    and
+    \begin{equation*}
+        g(x)[q(x) - q_1(x)] = r_1(x) - r(x)
+    \end{equation*}
+    If $q(x) - q_1(x)$ is not the zero polynomial, then
+    \begin{equation*}
+        \deg(g(q - q_1)) = \deg(r_1 - r) \geq \deg(g)
+    \end{equation*}
+    However, the degrees of both $r(x)$ and $r_1(x)$ are strictly less than the degree of $g(x)$. Therefore, $r(x) = r_1(x)$ and $q(x) = q_1(x)$.
+\end{proof}
+
+\begin{example}\label{example:2.2.2}
+    At this point, we should be familiar with long division from high school mathematics. Suppose we divide $x^3 - x^2 +2x - 3$ by $x - 2$. Then
+    \begin{equation*}
+        \polylongdiv{x^3 - x^2 + 2x - 3}{x - 2}
+    \end{equation*}
+    and so by Theorem \ref{theorem:2.2.1}, $x^3 - x^2 + 2x - 3 = (x - 2)(x^2 + x + 4) + 5$.
+\end{example}
+
+\begin{definition}\label{definition:2.2.3}\index{zero}\index{root}
+    Let $p(x)$ be a polynomial in $\F[x]$ and let $\alpha \in \F$. We say that $\alpha$ is a \emph{zero} or \emph{root} of $p(x)$ if $p(x)$ is in the kernel of the evaluation homomorphism $\phi_{\alpha}$. That is, $\alpha$ is a zero of $p(x)$ if $p(\alpha) = 0$.
+\end{definition}
+
+\begin{corollary}[The Factor Theorem]\label{corollary:2.2.4}\index{factor theorem}
+    Let $\F$ be a field. An element $\alpha \in \F$ is a zero of $p(x) \in \F[x]$ if and only if $x - a$ is a factor of $p(x)$ in $\F[x]$.
+\end{corollary}
+
+\begin{proof}
+    Suppose that $\alpha \in \F$ and $p(\alpha) = 0$. By Theorem \ref{theorem:2.2.1}, there exists polynomials $q(x)$ and $r(x)$ such that
+    \begin{equation*}
+        p(x) = (x - \alpha)q(x) + r(x)
+    \end{equation*}
+    and the degree of $r(x)$ must be less than the degree of $x - \alpha$. Since the degree of $r(x)$ is less than 1, $r(x) = a$ for $a \in \F$. Therefore,
+    \begin{equation*}
+        p(x) = (x - \alpha)q(x) + r(x)
+    \end{equation*}
+    But
+    \begin{equation*}
+        0 = p(\alpha) = 0 \cdot q(\alpha) + a = 0
+    \end{equation*}
+    Consequently, $p(x) = (x - \alpha)q(x)$ and $x - \alpha$ and $x - \alpha$ is a factor of $p(x)$.
+
+    Conversely, suppose that $x - \alpha$ is a factor of $p(x)$, i.e. $p(x) = (x - \alpha)q(x)$. Then $p(\alpha) = 0 \cdot q(\alpha) = 0$.
+\end{proof}
+
+\begin{corollary}\label{corollary:2.2.5}
+    Let $\F$ be a field. A nonzero polynomial $p(x)$ of degree $n$ in $\F[x]$ can have at most $n$ distinct zeros in $\F$.
+\end{corollary}
+
+\begin{proof}
+    We will use induction on the degree of $p(x)$. If $\deg(p) = 0$, then $p(x)$ is a constant polynomial and has no zeros. Let $\deg(p) = 1$. Then $p(x) = ax + b$ for some $a, b \in \F$. If $\alpha_1$ and $\alpha_2$ are zeros of $p(x)$, then $a\alpha_1 + b = a\alpha_2 + b$ or $\alpha_1 = \alpha_2$.
+
+    Now assume that $\deg(p) > 1$. If $p(x)$ does not have a zero in $\F$, then we are done. On the other hand, if $\alpha$ is a zero of $p(x)$, then $p(x) = (x - \alpha)q(x)$ for some $q(x) \in \F[x]$ by Corollary \ref{corollary:2.2.4}. The degree of $q(x)$ is $n - 1$ is Proposition \ref{proposition:2.1.12}. Let $\beta$ be some other zero of $p(x)$ that is distinct from $\alpha$. Then $p(\beta) = (\beta - \alpha)q(\beta) = 0$. Since $\alpha \neq \beta$ and $\F$ is a field, $q(\beta) = 0$. By our inductive hypothesis, $q(x)$ can have at most $n - 1$ zeros in $\F$ that are distinct from $\alpha$. Therefore, $p(x)$ has at most $n$ distinct zeros of $\F$.
+\end{proof}
+
+\begin{definition}\label{definition:2.2.6}\index{greatest common divisor}
+    Let $\F$ be a field. A monic polynomial $d(x)$ is a \emph{greatest common divisor} of polynomials $p(x), q(x) \in \F[x]$ if $d(x)$ evenly divides both $p(x)$ and $q(x)$; and, if for any other polynomial $d'(x)$ dividing both $p(x)$ and $q(x)$, then $d'(x) \mid d(x)$. We write $d(x) = \gcd(p(x), q(x))$.
+\end{definition}
+
+\begin{definition}\label{definition:2.2.7}\index{relatively prime}
+    We say that two polynomials $p(x)$ and $q(x)$ are \emph{relatively prime} if $\gcd(p(x), q(x)) = 1$.
+\end{definition}
+
+Just as we have Bézout's Theorem for integers, we have a similar outcome for polynomials as well.
+
+\begin{proposition}[Bézout's Theorem]\label{proposition:2.2.8}\index{Bézout's Theorem}
+    Let $\F$ be a field and suppose that $d(x)$ is a greatest common divisor of two polynomials $p(x)$ and $q(x)$ in $\F[x]$. Then there exists polynomials $r(x)$ and $s(x)$ such that
+    \begin{equation*}
+        d(x) = r(x)p(x) + s(x)q(x)
+    \end{equation*}
+    Furthermore, the greatest common divisor of two polynomials is unique.
+\end{proposition}
+
+\begin{proof}
+    Let $d(x)$ be the monic polynomial of smallest degree in the set
+    \begin{equation*}
+        S = \{f(x)p(x) + g(x)q(x) : f(x), g(x) \in \F[x]\}
+    \end{equation*}
+    We can write $d(x) = r(x)p(x) + s(x)q(x)$ for two polynomials $r(x)$ and $s(x)$ in $\F[x]$. We need to show that $d(x)$ divides both $p(x)$ and $q(x)$. We shall first show that $d(x)$ divides $p(x)$. By the division algorithm (Theorem \ref{theorem:2.2.1}), there exists polynomials $a(x)$ and $b(x)$ such that $p(x) = a(x)d(x) + b(x)$ where $b(x)$ is either the zero polynomial or $\deg(b) < \deg(d)$. Therefore,
+    \begin{align*}
+        b(x) &= p(x) - a(x)d(x) \\
+        &= p(x) - a(x)[r(x)p(x) + s(x)q(x)] \\
+        &= p(x) - a(x)r(x)p(x) - a(x)s(x)q(x) \\
+        &= p(x)(1 - a(x)r(x)) + q(x)(-a(x)s(x))
+    \end{align*}
+    is a linear combination of $p(x)$ and $q(x)$ and therefore must be in $S$. However, $b(x)$ must be the zero polynomial since $d(x)$ was chosen to be of the smallest degree; consequently, $d(x)$ divides $p(x)$. An analogous argument shows that $d(x)$ must divide $q(x)$ and hence, $d(x)$ is a common divisor of $p(x)$ and $q(x)$.
+
+    Next, to show that $d(x)$ is the greatest common divisor of $p(x)$ and $q(x)$, suppose that $d'(x)$ is another common divisor of $p(x)$ and $q(x)$. We will show that $d'(x) \mid d(x)$. Since $d'(x)$ is a common divisor of $p(x)$ and $q(x)$, there exist polynomials $u(x)$ and $v(x)$ such that $p(x) = u(x)d'(x)$ and $q(x) = v(x)d'(x)$. Therefore,
+    \begin{align*}
+        d(x) &= r(x)p(x) + s(x)q(x) \\
+        &= r(x)u(x)d'(x) + s(x)v(x)d'(x) \\
+        &= d'(x)[r(x)u(x) + s(x)v(x)]
+    \end{align*}
+    Since $d'(x) \mid d(x)$, $d(x)$ is the greatest common divisor of $p(x)$ and $q(x)$.
+
+    Finally, we must show that the greatest common divisor of $p(x)$ and $q(x)$ is unique. Suppose that $d'(x)$ is another greatest common divisor of $p(x)$ and $q(x)$. We have just shown that there exists polynomials $u(x)$ and $v(x)$ in $\F[x]$ such that
+    \begin{equation*}
+        d(x) = d'(x)[r(x)u(x) + s(x)v(x)]
+    \end{equation*}
+    Since
+    \begin{equation*}
+        \deg(d) = \deg(d') + \deg[ru + sv]
+    \end{equation*}
+    and $d(x)$ and $d'(x)$ are both greatest common divisors, $\deg(d) = \deg(d')$. Since $d(x)$ and $d'(x)$ are both monic polynomials of the same degree, then $d(x) = d'(x)$.
+\end{proof}
+
+\section{Irreducible Polynomials}
 
 \printindex
 
