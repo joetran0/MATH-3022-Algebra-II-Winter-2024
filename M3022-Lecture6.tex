@@ -1,0 +1,137 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem*{notation}{Notation}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{question}{Question}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\teq}{\trianglelefteq}
+\renewcommand{\mod}{\ \mathbf{mod} \ }
+\DeclareMathOperator{\Char}{char}
+
+\title{MATH 3022 Algebra II: Lecture 3}
+\author{Joe Tran}
+\date{Winter 2024}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\textbf{MATH 3022 Algebra II} \hfill \textbf{Lecture 6} \\
+\textsc{Lecture} \hfill \textsc{Joe Tran}
+
+\begin{example}
+    Consider the ring $R = \M_2(\Z_6) = \left\{\begin{bmatrix} a & b \\ c & d \end{bmatrix} : a, b, c, d \in \Z_6\right\}$ and let $A$ be the matrix given by
+    \begin{equation*}
+        A = \begin{bmatrix} 2 & 4 \\ 0 & 2 \end{bmatrix} \in \M_2(\Z_6)
+    \end{equation*}
+    Then
+    \begin{equation*}
+        2\begin{bmatrix} 2 & 4 \\ 0 & 2 \end{bmatrix} = 2A = A + A = \begin{bmatrix} 4 & 2 \\ 0 & 4 \end{bmatrix}
+    \end{equation*}
+    and also
+    \begin{equation*}
+        3\begin{bmatrix} 2 & 4 \\ 0 & 2 \end{bmatrix} = 3A = A + A + A = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}
+    \end{equation*}
+\end{example}
+
+Recall that the additive order of a ring is the smallest integer $n \in \N$ such that for any $r \in R$, $nr = 0$. If no such integer exists, then the additive order is defined to be 0. From Example 1, we see that $3A = 0$ so smallest integer is 3.
+
+\begin{example}
+    From Example 1, say we take the two matrices $2A$ and $3A$ and we add them together. Then
+    \begin{equation*}
+        2A + 3A = (A + A) + (A + A + A) = 5A = (2 + 3)A
+    \end{equation*}
+\end{example}
+
+\begin{definition}
+    The characteristic of a ring $R$ is the least positive integer $n$ such that $nr = 0$ for any $r \in R$. In other words,
+    \begin{equation*}
+        \Char(R) = \min\{n \in \N : nr = 0\}
+    \end{equation*}
+    If no such integer exists, then $nr = 0$.
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item For the set $\M_2(\Z_6)$ has characteristic 6.
+        \item The set $\Z_n$ has characteristic $n$
+        \item The set $\Z$ has characteristic 0.
+    \end{itemize}
+\end{example}
+
+\begin{question}
+    Is it possible to have a finite $R$ to have characteristic 0?
+\end{question}
+
+Not possible. If $\Char(R) = 0$, then for every $r \in R$, there exists $n \in \N$ with additive order larger than $n$. Then $\{0r, 1r, 2r,..., nr\}$ consists of pairwise distinct elements, so that $|R| > n$. But as $n$ was arbitrary, then $R$ is infinite.
+
+\begin{question}
+    Is it possible to have an infinite ring with positive characteristic?
+\end{question}
+
+Possible. Take the set $\Z_3[x]$ which is infinite, and it has characteristic 3.
+
+\begin{lemma}
+    Let $R$ be a ring with identity $1 \in R$. If $1$ has additive order $\infty$, then $\Char(R) = 0$. If $1$ has additive order $n$, then $\Char(R) = n$.
+\end{lemma}
+
+\begin{proof}
+    If 1 has $\infty$ additive order, then there is no such positive integer $n$ such that $nr = 0$. Thus, $\Char(R) = 0$. On the other hand, if $n1 = 0$, then for any $r \in R$,
+    \begin{equation*}
+        nr = r + r + \cdots + r = 1r + 1r + \cdots + 1r = (1 + 1 + \cdots + 1)r = 0r = 0
+    \end{equation*}
+    Therefore, $\Char(R) = n$.
+\end{proof}
+
+\begin{theorem}
+    The characteristic of an integral domain is either prime $p$ or 0.
+\end{theorem}
+
+\begin{proof}
+    Let $D$ be an integral domain. If $D$ is an infinite integral domain, then we are done. On the other hand, if $D$ is an integral domain with characteristic $n$, and suppose that $n = ab$ for some $a, b \in D$. Then by using Lemma 1,
+    \begin{equation*}
+        n1 = 1 + 1 + \cdots + 1 = \underbrace{(1 + 1 + \cdots + 1)}_{a \ times}\underbrace{(1 + 1 + \cdots + 1)}_{b \ times} = 0
+    \end{equation*}
+    Then $(a1)(b1) = 0$. Since $D$ is an integral domain that has no zero divisors, then without loss of generality, assume that $a1 = 0$. Then the only possible case in which this could happen is when $a = n$, because $a \leq n$ and $n$ is the smallest positive integer such that $n1 = 0$.
+\end{proof}
+
+Observe that the characteristic of a field is either prime $p$ or zero. Indeed, a finite field has positive characteristic.
+
+\begin{example}
+    Suppose $R$ is a commutative ring with no zero divisors. Show that all nonzero elements have the same additive order.
+
+    Let $a, b \in R$ be nonzero elements, and suppose that the additive order of $a$ is $m$ and the additive order of $b$ is $n$. Then without loss of generality, let us assume that $n \leq m$. Then
+    \begin{equation*}
+        n(ab) = \underbrace{ab + ab + \cdots + ab}_{n \ times} = \underbrace{(a + a + \cdots + a)}_{n \ times} b = 0b = 0
+    \end{equation*}
+    and similarly,
+    \begin{equation*}
+        n(ab) = \underbrace{ab + ab + \cdots + ab}_{n \ times} = a\underbrace{(b + b + \cdots + b)}_{n \ times} = a0 = 0
+    \end{equation*}
+    Therefore, $n = m$.
+\end{example}
+
+\end{document}

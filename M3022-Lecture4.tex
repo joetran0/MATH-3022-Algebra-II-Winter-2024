@@ -1,0 +1,141 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem*{notation}{Notation}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{question}{Question}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\teq}{\trianglelefteq}
+\renewcommand{\mod}{\ \mathbf{mod} \ }
+
+\title{MATH 3022 Algebra II: Lecture 3}
+\author{Joe Tran}
+\date{Winter 2024}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\textbf{MATH 3022 Algebra II} \hfill \textbf{Lecture 4} \\
+\textsc{Lecture} \hfill \textsc{Joe Tran}
+
+\textbf{Recall:} Let $R$ be a ring and $R[x]$ be the polynomial ring over $R$. Then
+\begin{enumerate}
+    \item If $R$ is commutative, then $R[x]$ is commutative.
+    \item If $R$ contains identity, then $R[x]$ contains the same identity as $R$.
+    \item If $R$ is an integral domain, then $R[x]$ is an integral domain.
+\end{enumerate}
+
+\begin{proof}[Proof of (3)]
+    For the third condition, it is sufficient to show that if $R$ has no zero divisors, then $R[x]$ has no zero divisors. Let $p(x) = \sum_{j = 0}^{n} a_jx^j$ with $a_n \neq 0$ and $q(x) = \sum_{j = 0}^{m} b_jx^j$ with $b_m \neq 0$. \color{teal} For the addition of $p(x)$ and $q(x)$, 
+    \begin{equation*}
+        p(x) + q(x) = \sum_{j = 0}^{n} a_jx^j + \sum_{j = 0}^{m} b_jx^j = \sum_{j = 0}^{\max\{n, m\}} (a_j + b_j)x^j \tag{1}
+    \end{equation*}
+    and for the multiplication, 
+    \begin{equation*}
+        p(x)q(x) =  \left(\sum_{j = 0}^{n} a_jx^j\right)\left(\sum_{j = 0}^{m} b_jx^j\right) = \sum_{j = 0}^{n + m} \left(\sum_{k = 0}^{j} a_kb_{j - k}\right)x^j \tag{2}
+    \end{equation*}
+    \color{black} Considering (2), to show that the product is a nonzero polynomial, observe that we have
+    \begin{align*}
+        p(x)q(x) &= a_nb_nx^{n + m} + (a_{n - 1}b_m + a_nb_{m - 1})x^{n + m - 1}  + \cdots + a_0b_0
+    \end{align*}
+    Since $R$ is an integral domain and $a_n, b_m \neq 0$, then $a_nb_m \neq 0$. Therefore, $p(x)q(x) \neq 0$. Thus, $R[x]$ has no zero divisors.
+\end{proof}
+
+\begin{example}
+    Consider the set $\Z[i] = \{a + ib : a, b \in \Z, i^2 = -1\}$. Then $(\Z[i], +, \cdot)$ is a ring. We show that $\Z[i]$ is an integral domain, i.e. commutative ring with identity, and has no zero divisors.
+    \begin{enumerate}
+        \item $\Z[i]$ is commutative because of complex numbers is also commutative.
+        \item $1 = 1 + 0i \in \Z[i]$ , so $\Z[i]$ contains the identity.
+        \item Let $a + ib, c + id \in \Z[i]$ such that $(a + ib)(c + id) = 0$. Then we multiply both sides by the complex conjugates so that
+        \begin{align*}
+            (a - ib)(c - id)(a + ib)(c + id) &= 0 \\
+            (a^2 + b^2)(c^2 + d^2) &= 0
+        \end{align*}
+        Then without loss of generality, $a^2 + b^2 = 0$ implies that $a = b = 0$, so then $c \neq 0$ and $d \neq 0$ and thus, $\Z[i]$ has no zero divisors, as required.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Let $R$ be a ring. We say that $S \subset R$ is a subring of $R$, and write $S \leq R$\footnote{Whenever I use the notation $S \leq R$, I mean that $S$ is a subring of $R$. It is a similar notation as saying that $H$ is a subgroup of $G$, or $H \leq G$, in group theory.}, if $S$ is a ring using the same addition and multiplication as $R$.
+\end{definition}
+
+\begin{example}
+    $\{0\} \leq R$ and $R \leq R$, which are known as the \emph{trivial subrings} of $R$.
+\end{example}
+
+\begin{example}
+    The following are examples of subrings of one another:
+    \begin{equation*}
+        n\Z \leq \Z \leq \Q \leq \R \leq \C \leq \C[x]
+    \end{equation*}
+    and also,
+    \begin{equation*}
+        \Z \leq \Z[i] \leq \C
+    \end{equation*}
+\end{example}
+
+\begin{example}
+    $\Z_n \not\leq \Z$. Indeed, recall that $\Z_n = \{0, 1, 2,..., n - 1\}$. Then addition $+_n$ and $\cdot_n$ are not the same operations as operations over $\Z$, namely $+$ and $\cdot$.
+
+    Consider $\Z_3 = \{0, 1, 2\}$, where
+    \begin{align*}
+        0 &= \{..., -6, -3, 0, 3, 6, ...\} \\
+        1 &= \{..., -5, -2, 1, 4, 7, ...\} \\
+        2 &= \{..., -4, -1, 2, 5, 8, ...\}
+    \end{align*}
+    When we define addition in $\Z_3$,
+    \begin{equation*}
+        a +_3 b = [a] + [b] = [a + b] = a + b \bmod 3
+    \end{equation*}
+    Similarly, multiplication is defined as
+    \begin{equation*}
+        a \cdot_3 b = [a] \cdot [b] = [a \cdot b] = a \cdot b \bmod 3
+    \end{equation*}
+\end{example}
+
+\begin{proposition}
+    Let $R$ be a ring and let $S \subset R$. Then $S \leq R$ if and only if
+    \begin{enumerate}
+        \item $S \neq \emptyset$.
+        \item If $r, s \in S$, then $rs \in S$.
+        \item If $r, s \in S$, then $r + (-s) \in S$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{example}
+    Take $R = \Z_6 = \{0, 1, 2, 3, 4, 5, 6\}$. Then $S \leq R$ where $S = \{0, 3\}$. \color{Green}{Is $S$ a ring with identity?} \color{black} By the multiplication table,
+    \begin{center}
+        \begin{tabular}{c|cc} 
+            $\cdot_3$ & 0 & 3 \\ \hline
+            0 & 0 & 0 \\
+            3 & 0 & 3
+        \end{tabular}
+    \end{center}
+    See that $3 \cdot_6 3 = 3$
+\end{example}
+
+\end{document}
