@@ -1,0 +1,156 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem*{notation}{Notation}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{question}{Question}
+\theoremstyle{remark}\newtheorem{remark}{Remark}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\teq}{\trianglelefteq}
+\renewcommand{\mod}{\ \mathbf{mod} \ }
+\DeclareMathOperator{\Char}{char}
+
+\title{MATH 3022 Algebra II: Lecture 3}
+\author{Joe Tran}
+\date{Winter 2024}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\textbf{MATH 3022 Algebra II} \hfill \textbf{Lecture 7} \\
+\textsc{Lecture} \hfill \textsc{Joe Tran}
+
+Recall in the previous lecture:
+\begin{itemize}
+    \item[(1)] The characteristic of an integral domain is either prime or zero.
+    \item[(2)] If $R$ has characteristic zero, then $|R|$ is not finite.
+    \item[(1) + (2)] The characteristic of a finite field is a prime $p$.
+    \item[(3)] If $R$ is a commutative ring with no zero divisors, then every nonzero elements have the same additive order. 
+    \item This implies that every nonzero element in an infinite field has additive order $p$.
+\end{itemize}
+
+From point •, this would imply that the field $(F, +)$ is a $p$-group.
+
+\begin{definition}
+    A group $(G, *)$ is said to be a $p$-group if $|G| = p^m$.
+\end{definition}
+
+\begin{corollary}[15.2]
+    Let $G$ be a finite group. Then $G$ is a $p$-group if and only if $|G| = p^m$.
+\end{corollary}
+
+\begin{corollary}
+    Let $F$ be a finite field with characteristic $p$ (prime), then $|F| = p^m$ for some $m \in \Z$.
+\end{corollary}
+
+\section{Ring Homomorphisms}
+
+\begin{definition}
+    Let $(R, +_R, \cdot_R)$ and $(S, +_S, \cdot_S)$\footnote{I will use triplets to denote the ring $(R, +, \cdot)$, where $R$ is the ring, and $+$ and $\cdot$ are the operations of addition and multiplication, respectively.} be two rings with respect to their own operations. Then the mapping $\phi : R \to S$ is said to be a \emph{ring homomorphism} if for all $x, y \in R$,
+    \begin{align*}
+        \phi(x +_R y) &= \phi(x) +_S \phi(y) \\
+        \phi(x \cdot_R y) &= \phi(x) \cdot_S \phi(y)
+    \end{align*}
+\end{definition}
+
+Observe that for $n \in \N$ and for all $x \in R$,
+\begin{align*}
+    \phi(nx) &= \phi(x +_R x +_R \cdots +_R x) \\
+    &= \phi(x) +_S \phi(x) +_S + \cdots +_S \phi(x) \\
+    &= n\phi(x)
+\end{align*}
+Also observe that $\phi(x^n) = \phi^n(x)$ and also, $\phi(0_R) = 0_S$\footnote{Question 8 on Assignment 1}.
+
+Taking the first observation and the third observation, if $nx = 0_R$, then $n\phi(x) = 0_S$, and furthermore, if the additive order of $x$ i $n$, then the additive order of $\phi(x) \mid n$.
+
+Also on Assignment: If $R$ and $S$ are rings with identity and $\phi$ is onto, then $\phi(1_R) = 1_S$.
+
+\begin{question}
+    Give an example where $\phi$ is not onto and $\phi(1_R) \neq 1_S$.
+\end{question}
+
+\begin{example}
+    \begin{itemize}
+        \item Let $\phi : \Z \to \Z_n$ given by $\phi(x) = x \bmod n$ for all $x \in \Z$ is a ring homomorphism.
+        \item Let $\phi : \C \to \C$ be defined by $\phi(a + ib) = a - ib$ for all $a, b \in \R$ is a ring homomorphism.
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    A ring homomorphism $\phi : R \to S$ is said to be a ring isomorphism if $\phi$ is a bijection.
+\end{definition}
+
+\begin{example}
+    For a fixed $a \in R$, define $\phi : R[x] \to R$ given by
+    \begin{equation*}
+        \phi_a(f(x)) = f(a)
+    \end{equation*}
+    This is called the \emph{evaluation homomorphism}. Indeed,
+    \begin{align*}
+        \phi_a(f(x) + g(x)) = f(a) + g(x) = \phi_a(f(x)) + \phi_a(g(x))
+    \end{align*}
+    and
+    \begin{equation*}
+        \phi_a(f(x)g(x)) = f(a)g(a) = \phi_a(f(x))\phi_a(g(x))
+    \end{equation*}
+\end{example}
+
+\begin{question}
+    Is the mapping $\phi : \R \to \R$ given by $\phi(a) = -a$ a ring homomorphism?
+\end{question}
+
+No it is not. Take $2, 3 \in \R$ and observe that
+\begin{equation*}
+    \phi(2 \cdot 3) = -6 = 6 = -2 \cdot -3 = \phi(2)\phi(3)
+\end{equation*}
+which is absurd.
+
+\begin{example}
+    Determine all ring homomorphisms from $\Z_{12}$ to $\Z_{30}$.
+
+    Let $\phi : \Z_{12} \to \Z_{30}$ be a mapping and let $\phi([x]_{12}) = [y]_{30}$. Then
+    \begin{equation*}
+        \phi([12]_{12} \cdot [1]_{12}) = 12 \cdot [y]_{30}
+    \end{equation*}
+    would imply that $12 [y]_{30} = [0]_{30}$, and so $12y \equiv 0 \pmod {30}$, i.e. all $y$ such that $30 \mid 12y$. So $[y]_{30} = 0, 5, 10, 15, 20, 25$.
+
+    Observe that $\phi([1]_{12}) = [y]_{30}$ implies that
+    \begin{equation*}
+        \phi([x]_{12}) = \phi(\underbrace{1 +_{12} + \cdots +_{12} 1}_{x \ times}) = x ([y]_{30}) = x[y]_{30}
+    \end{equation*}
+    Thus, it determines the map $\phi$.
+
+    To complete the proof, we need to work with multiplication now. Observe for any $a \in \Z_{12}$,
+    \begin{equation*}
+        \phi([1]_{12}) = \phi(1 \cdot [1]_{12}) = \phi([1]_{12}) \phi([1]_{12}) = \phi([1]_{12})
+    \end{equation*}
+    which implies that
+    \begin{equation*}
+        ([x]_{30})^2 = [x]_{30}
+    \end{equation*}
+    So we have $[0]_{30}$, $[10]_{30}$, $[15]_{30}$ and $[25]_{30}$.
+\end{example}
+
+\end{document}
