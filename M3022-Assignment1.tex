@@ -1,31 +1,53 @@
 \documentclass[11pt]{amsart}
 \usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor, mathrsfs}
 
+\theoremstyle{definition}\newtheorem{definition}{Definition}
 \theoremstyle{definition}\newtheorem{question}{Question}
 \theoremstyle{definition}\newtheorem*{solution}{Solution}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{definition}\newtheorem{notation}{Notation}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
 
-\newcommand{\K}{\mathbb{K}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\CC}{\mathcal{C}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathcal{D}}
+\renewcommand{\d}{\delta}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\e}{\varepsilon}
 \newcommand{\F}{\mathbb{F}}
-\renewcommand{\SS}{\mathcal{S}}
-\newcommand{\T}{\mathcal{T}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\H}{\mathbb{H}}
 \newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\L}{\mathscr{L}}
 \newcommand{\M}{\mathcal{M}}
-\newcommand{\teq}{\trianglelefteq}
-\DeclareMathOperator{\diag}{diag}
-
-\everymath{\displaystyle}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\Z}{\mathbb{Z}}
 
 \begin{document}
 
-\noindent \textbf{MATH 3022 Algebra II} \hfill \textbf{Homework Assignment 1} \\
+\noindent \textbf{MATH 3022 Algebra II} \hfill \textbf{Assignment 1} \\
 \textsc{Assignment} \hfill \textsc{Joe Tran}
 
 \begin{question}\label{question:1}
@@ -42,6 +64,7 @@
             \item[(i)] A commutative ring
             \item[(ii)] A ring with identity
             \item[(iii)] An integral domain.
+            \item[(iv)] A field.
         \end{itemize}
     \end{itemize}
 \end{question}
@@ -49,8 +72,8 @@
 \begin{question}
     Let $\Z_n[i] = \{a + ib : a, b \in \Z_n, i^2 = -1\}$ denote the Gaussian integers modulo $n$.
     \begin{itemize}
-        \item[(a)] Generate the multiplication table of $\Z_n[i]$ for $n = 2, 3, ..., 7$.
-        \item[(b)] Determine all integers $n \geq 2$ for which $\Z_n[i]$ is an integral domain, hence, a field.
+        \item[(a)] Generate the multiplication table of $\Z_n[i]$ for $n = 2, 3, ..., 7$. (Use computer. Submit the tables for only $n = 2, 3$.)
+        \item[(b)] Determine all integers $n \geq 2$ for which $\Z_n[i]$ is an integral domain, hence, a field. (Hint: Fermat's theorem on the sum of squares. You may assume that $a^2 + b^2 = 0 \bmod p$ implies $a = b = 0 \bmod p$.)
     \end{itemize}
 \end{question}
 
@@ -71,5 +94,51 @@
     \end{itemize}
 \end{question}
 
+\begin{question}
+    \begin{itemize}
+        \item[(a)] Let $R$ be a commutative ring with identity. Show that the set of units in $R$, $U(R)$, is an abelian group under $\times_R$.
+        \item[(b)] Let $F$ be a finite field with $n$ elements. Show that $a^{n - 1} = 1$ for all $a \neq 0 \in F$.
+    \end{itemize}
+\end{question}
+
+\begin{question}
+    Let $F$ be a field and let $K$ be a subset of $F$ with at least two elements. Prove that $K$ is a subfield of $F$ if for any $a, b \in K$, $a - b \in K$ and $ab^{-1} \in K$.
+\end{question}
+
+\begin{question}
+    \begin{itemize}
+        \item[(a)] Let $R$ be a commutative ring with prime characteristic $p$. Show that for $r, s \in R$,
+        \begin{itemize}
+            \item[(i)] $(r + s)^p = r^p + s^p$
+            \item[(ii)] $(r + s)^{p^m} = r^{p^m} + s^{p^m}$ for all positive integers $m$.
+            \item[(iii)] The Frobenius map $x \mapsto x^p$ is a ring homomorphism from $R$ to $R$.
+        \end{itemize}
+        \item[(b)] Give an example of a ring of characteristic 4 and elements $r$ and $s$ such that $(r + s)^4 \neq r^4 + s^4$.
+    \end{itemize}
+\end{question}
+
+\begin{question}
+    Let $\phi : R \to S$ be a ring homomorphism. Let $\phi(R) = \{\phi(r) : r \in R\}$. Prove each of the following statements:
+    \begin{itemize}
+        \item[(a)] $\phi(0_R) = 0_S$
+        \item[(b)] $\phi(-b) = -\phi(b)$ for all $b \in R$
+        \item[(c)] $\phi(R)$ is a subring of $S$
+        \item[(d)] If $R$ is a commutative subring, then $\phi(R)$ is a commutative subring.
+        \item[(e)] Suppose $R$ and $S$ are rings with identities. If $\phi$ is onto, then $\phi(1_R) = 1_S$.
+        \item[(f)] If $R$ is a field and $\phi(R) \neq \{0_S\}$ then $\phi(R)$ is a field.
+    \end{itemize}
+\end{question}
+
+\begin{question}
+    Consider the ring $S = \left\{\begin{bmatrix} a & b \\ -b & a \end{bmatrix} : a, b \in \R\right\}$ with matrix addition and matrix multiplication. Show that $\phi : \C \to S$ given by
+    \begin{equation*}
+        \phi(a + ib) = \begin{bmatrix} a & b \\ -b & a \end{bmatrix}
+    \end{equation*}
+    is a ring isomorphism.
+\end{question}
+
+\begin{question}
+    Show that $\Z_3[i]$ is ring isomorphic to $\Z_3[x]/\langle{x^2 + 1}\rangle$.
+\end{question}
 
 \end{document}
