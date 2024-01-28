@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor, mathrsfs, polynom}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem{question}{Question}
+\theoremstyle{definition}\newtheorem*{solution}{Solution}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{definition}\newtheorem{notation}{Notation}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\renewcommand{\d}{\delta}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\noindent \textbf{MATH 3022 Algebra II} \hfill \textbf{Kritik Assignment 2} \\
+\textsc{Assignment} \hfill \textsc{Joe Tran}
+
+\begin{question}
+    Suppose $p(x)$ is a polynomial of degree $n$ with coefficients from any field. How many roots can $p(x)$ have? How does this generalize your high school algebra experience?
+\end{question}
+
+\begin{solution}
+    According to Corollary 17.9, if $F$ is a field and $p(x)$ is a nonzero polynomial of degree $n$ in $F[x]$, then $p(x)$ can have at most $n$ distinct zeros in $F$. In high school, we only considered the field of real polynomials, in which our teacher would tell us to look at the degree of the polynomial and that will tell us at most how many roots there are, which now is much different compared to learning about this concept of polynomials in a general field.
+\end{solution}
+
+\begin{question}
+    What is the definition of an irreducible polynomial?
+\end{question}
+
+\begin{solution}
+    A nonconstant polynomial $f(x) \in F[x]$ is \emph{irreducible} over a field $F$ if $f(x)$ cannot be expressed as a product of two polynomials $p(x)$ and $q(x)$ in $F[x]$, where the degrees of $p(x)$ and $q(x)$ are smaller than the degree of $f(x)$. They are treated as the ``prime numbers'' of polynomial rings.
+\end{solution}
+
+\begin{question}
+    Find the remainder upon division of $8x^5 - 18x^4 + 20x^3 - 25x^2 + 20$ by $4x^2 - x - 2$.
+\end{question}
+
+\begin{solution}
+    \begin{equation*}
+        \polylongdiv{8x^5 - 18x^4 + 20x^3 - 25x^2 + 20}{4x^2 - x - 2}
+    \end{equation*}
+    Therefore, the remainder of our polynomial is $3x + 6$.
+\end{solution}
+
+\end{document}
