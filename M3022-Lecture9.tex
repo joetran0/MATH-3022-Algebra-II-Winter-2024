@@ -1,0 +1,149 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor, mathrsfs}
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+\theoremstyle{definition}\newtheorem{question}{Question}
+\theoremstyle{definition}\newtheorem*{solution}{Solution}
+\theoremstyle{definition}\newtheorem{example}{Example}
+\theoremstyle{definition}\newtheorem{notation}{Notation}
+\theoremstyle{theorem}\newtheorem{theorem}{Theorem}
+\theoremstyle{theorem}\newtheorem{corollary}{Corollary}
+\theoremstyle{theorem}\newtheorem{lemma}{Lemma}
+\theoremstyle{theorem}\newtheorem{proposition}{Proposition}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\renewcommand{\d}{\delta}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\teq}{\lhd}
+
+\begin{document}
+
+\noindent \textbf{MATH 3022 Algebra II} \hfill \textbf{Lecture 9} \\
+\textsc{Lecture} \hfill \textsc{Joe Tran}
+
+Recall in the previous lecture:
+\begin{center}
+    \fbox{\fbox{\parbox{0.9\linewidth}{
+        \begin{definition}
+            An \emph{ideal} in a ring $R$ is a subring $I \teq R$ such that if $a \in I$ and $r \in R$, then $ar, ra \in I$.
+        \end{definition}}}}
+\end{center}
+
+Observe that if $I \leq R$, then
+\begin{itemize}
+    \item $(R, +)$ is an abelian group and $(I, +) \leq (R, +)$ and for $r \in R$, then $r + I = I + r$. This is what it means for $I \teq R$ to be a normal subgroup.
+\end{itemize}
+
+\begin{center}
+    \fbox{\fbox{\parbox{0.9\linewidth}{
+        \begin{definition}
+            The set
+            \begin{equation*}
+                R/I = \{r + I : r \in R\}
+            \end{equation*}
+            is called the \emph{factor ring} or \emph{quotient ring}.
+        \end{definition}}}}
+\end{center}
+
+Based on the definition above, we note that $R/I$ is a group with addition and operation defined by
+\begin{equation*}
+    (r + I) + (s + I) = (r + s) + I
+\end{equation*}
+For the multiplication, we seek an operation so that $R/I$ under multiplication is well defined.
+
+\begin{center}
+    \fbox{\fbox{\parbox{0.9\linewidth}{
+        \begin{lemma}
+            Let $I \leq R$. Then the operation $(r + I)(s + I) = (rs) + I$ is well defined if and only if $I \teq R$.
+        \end{lemma}}}}
+\end{center}
+
+\begin{proof}
+    Suppose that $I \teq R$. We want to show that for all $a, b \in I$,
+    \begin{equation*}
+        (r + I)(s + I) = [(r + a) + I][(s + b) + I]
+    \end{equation*}
+    So on the right hand side, we have
+    \begin{align*}
+        [(r + a) + I][(s + b) + I] &= (r + a)(s + b) + I \\
+        &= (rs + as + rb + ab) + I \\
+        &= (rs) + I
+    \end{align*}
+
+    On the other hand, assume that $I \leq R$. Then there exists an $r \in R$ and $a \in I$ such that either $ar \notin I$ or $ra \notin I$, or both. Without loss of generality, assume that $ar \notin I$. Then
+    \begin{align*}
+        (0 + I)(r + I) &= 0r + I = 0 + I
+    \end{align*}
+    but
+    \begin{equation*}
+        (a + I)(r + I) = ar + I
+    \end{equation*}
+    But $ar \notin I$, so $ar + I \neq 0 + I$. Therefore, the operation is not well defined.
+\end{proof}
+
+\begin{example}
+    \begin{itemize}
+        \item For $n \in \N$, $\Z_n = \Z/n\Z = \Z/\langle{n}\rangle$.
+        \item How many elements does $\Z[x]/\langle{x, 2}\rangle$ have? Note that
+        \begin{equation*}
+            \langle{x, 2}\rangle = \{xg(x) + 2f(x) : f(x), g(x) \in \Z[x]\}
+        \end{equation*}
+        Let $p(x) = \sum_{i = 0}^{n} c_ix^i \in \Z[x]$, then $f(x) \in \langle{x, 2}\rangle$ if $c_0$ is even, and $f(x) \in \langle{x, 2}\rangle$ if $c_0$ is odd.
+    \end{itemize}
+\end{example}
+
+Recall that if $\phi : R \to S$ is a ring homomorphism, the kernel of $\phi$ is an ideal of $R$.
+
+\begin{center}
+    \fbox{\fbox{\parbox{0.9\linewidth}{
+        \begin{theorem}
+            Let $I \teq R$. Then the map $\phi : R \to R/I$ defined by $\phi(r) = r + I$ is a ring homomorphism from $R$ to $R/I$ and $\ker(\phi) = I$. 
+        \end{theorem}}}}
+\end{center}
+
+\begin{center}
+    \fbox{\fbox{\parbox{0.9\linewidth}{
+        \begin{theorem}[First Isomorphism Theorem]
+            Let $\psi : R \to S$ be a ring homomorphism. Then $\ker(\psi)$ is an ideal of $R$. If $\phi : R \to R/\ker(\psi)$ is the canonical homomorphism, then there exists a unique isomorphism $\eta : R/\ker(\phi) \to \psi(R)$ such that $\psi = \eta\phi$.
+        \end{theorem}}}}
+\end{center}
+
+\begin{example}
+    Consider the evaluation homomorphism $\phi_{\alpha} : \Z[x] \to \Z$ given by $\phi_{\alpha}(f(X)) = f(\alpha)$. Then
+    \begin{equation*}
+        \ker(\phi_{\alpha}) = \langle{x}\rangle
+    \end{equation*}
+    and so by the first isomorphism theorem, $\Z[x]/\langle{x}\rangle \simeq \phi_{\alpha}(\Z)$. We want to show that $\phi_{\alpha}(\Z[x]) = \Z$, or $\phi_{\alpha}$ is onto. For all $a \in \Z$, let $f(x) = a$ and $\phi_{\alpha}(f(x)) = a$, so $\phi_{\alpha}$ is onto so $\Z/\langle{x}\rangle \simeq \Z$.
+\end{example}
+
+\end{document}
