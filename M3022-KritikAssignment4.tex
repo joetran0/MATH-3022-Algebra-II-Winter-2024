@@ -1,0 +1,41 @@
+\documentclass[11pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, amssymb, amsmath, amsthm}
+
+\newtheorem{question}{Question}
+
+\title{MATH 3022 Kritik Assignment 3}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{question}
+    Why do the axioms of a vector space appear to only have four conditions, rather than the ten you may have seen the first time you saw an axiomatic definition?
+\end{question}
+
+Vector spaces have a similar structure compared to groups and rings, in which we are able to use the axioms defined for groups and rings and apply it for vector spaces.
+
+\begin{question}
+    The set $V = \mathbb{Q}(\sqrt{2}) = \{a + b\sqrt{11} : a, b \in \mathbb{Q}\}$ is a vector space. Carefully define the operations on this set that will make this possible. Describe the subspace spanned by $S = \{\vec{u}\}$, where $\vec{u} = 3 + \frac{2}{7}\sqrt{11} \in V$.
+\end{question}
+
+Let $\vec{u}, \vec{v} \in V$. Then we have the following operations defined by the mappings: $+ : V \times V \to V$ and $\cdot : V \times V \to V$ where,
+\begin{equation*}
+    \vec{u} + \vec{v} = (a + b\sqrt{11}) + (c + d\sqrt{11}) = (a + c) + (b + d)\sqrt{2}
+\end{equation*}
+and
+\begin{equation*}
+    \vec{u} \cdot \vec{v} = (a + b\sqrt{11})(c + d\sqrt{11}) = (ac + 11bd) + (ad + bc)\sqrt{11}
+\end{equation*}
+where $a + c$, $b + d$, $ac + 11bd$, and $ad + bc \in \mathbb{Q}$.
+
+The subspace spanned by $S = \{3 + \frac{2}{7}\sqrt{11}\}$ is the set of the form
+\begin{equation*}
+    W = \left\{3a + \frac{2}{7}b\sqrt{11} : a, b \in \mathbb{Q}\right\}
+\end{equation*}
+for some coefficients $a, b \in \mathbb{Q}$.
+
+
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[11pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor, mathrsfs, nicefrac, multicol}
+\usepackage[margin=1in]{geometry}
+
+\theoremstyle{}\newtheorem{question}{Question}
+\theoremstyle{definition}\newtheorem*{solution}{Solution}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5pt}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\L}{\mathscr{L}}
+\newcommand{\M}{\mathscr{M}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\e}{\varepsilon}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\SS}{\mathcal{S}}
+\renewcommand{\phi}{\varphi}
+
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\cluster}{cluster}
+
+\begin{document}
+
+\noindent \textbf{MATH 3022 Algebra II} \hfill \textbf{Kritik Assignment 1} \\
+\noindent \textsc{Assignment} \hfill \textsc{Joe Tran}
+
+\vspace{5pt}
+
+\begin{question}
+    What is the fundamental difference between groups and rings?
+\end{question}
+
+\begin{solution}
+    In Group Theory, we study a set $G$ with a \emph{single} binary operation $* : G \times G \to G$, in which we call the pair $(G, *)$ a group. Here in Ring Theory, we study a set $R$ with \emph{two} binary operations, namely $+$ and $\cdot$, in which we call $R$ a ring.
+\end{solution}
+
+\begin{question}
+    Give two characterizations of an integral domain.
+\end{question}
+
+\begin{solution}
+    Two characterizations of an integral domain is as follows:
+    \begin{enumerate}
+        \item The Cancellation Law: If $D$ is a commutative ring with identity, then $D$ is an integral domain if and only if for every nonzero $d \in D$ with $da = db$, then $a = b$.
+        \item $R$ is an integral domain if for every $x, y \in R$ such that $xy = 0$, then either $x = 0$ or $y = 0$.
+    \end{enumerate}
+\end{solution}
+
+\begin{question}
+    Provide two examples of fields, one infinite, one finite.
+\end{question}
+
+\begin{solution}
+    We have the two examples of fields below:
+    \begin{enumerate}
+        \item For the example where a field is finite, take $F$ to be the set of matrices
+        \begin{equation*}
+            F = \left\{\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 1 \\ 1 & 1 \end{bmatrix}, \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}\right\}
+        \end{equation*}
+        This is a (finite) field with entries in $\Z_2$.
+
+        \item The set $\Q[\sqrt{2}] = \{a + b\sqrt{2} : a, b \in \Q\}$ is a (infinite) field.
+    \end{enumerate}
+\end{solution}
+
+\end{document}

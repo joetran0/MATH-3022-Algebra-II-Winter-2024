@@ -1,0 +1,99 @@
+\documentclass[11pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts, amssymb, amsmath, amsthm, booktabs, hyperref, pgfplots, tikz, xcolor}
+
+\newtheorem{question}{Question}
+\theoremstyle{definition}\newtheorem{solution}{Solution}
+\theoremstyle{definition}\newtheorem{definition}{Definition}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\title{MATH 3022 Algebra II: Assignment 2}
+\author{Joe Tran}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{question}
+    Let $I$ and $J$ be ideals of a ring $R$ with $J \subset I$.
+    \begin{itemize}
+        \item[(a)] Prove that $I/J = \{a + J : a \in I\}$ is an ideal in the quotient ring $R/J$.
+        \item[(b)] Prove the Third Isomorphism Theorem for Rings.
+    \end{itemize}
+\end{question}
+
+\begin{question}[\textcolor{red}{\emph{5 pts.}}]
+    \begin{itemize}
+        \item[(a)] Let $R$ be a commutative ring with identity. Show that if $\{0_R\}$ and $R$ are the only ideals of $R$, then $R$ is a field.
+        \item[(b)] Let $F$ be a field. Use (a) to show that $F[x]$ is not a field.
+    \end{itemize}
+\end{question}
+
+\begin{question}[\textcolor{red}{\emph{5 pts.}}]
+    Show that the principal ideal $\langle{x - 1}\rangle$ in $\Z[x]$ is prime but not maximal.
+\end{question}
+
+\begin{question}
+    Let $I_0 = \{f(x) \in \Z[x] : f(0) = 0\}$. Show that for any positive integer $n$, there exists a sequence of ideals $I_1,..., I_n$ satisfying
+    \begin{equation*}
+        I_0 \subsetneq I_2 \subsetneq \cdots \subsetneq I_n \subsetneq \Z[x]
+    \end{equation*}
+\end{question}
+
+\begin{question}[\textcolor{red}{\emph{5 pts.}}]
+    Let $R$ be an integral domain. Assume that the division algorithm always holds in $R[x]$. Prove that $R$ is a field.
+\end{question}
+
+\begin{question}
+    We have the following definition: \\[0.5em]
+    \fbox{\parbox{0.925\linewidth}{
+        \begin{definition}
+            Let $a$ be a nonzero element in a field $F$. The \emph{multiplicative order of $a$} is the least positive integer $k$ where $a^k = 1_F$.
+        \end{definition}}}\\[0.5em]
+    Prove that for any positive integer $n$, a field $F$ can have at most a finite number of elements of multiplicative order at most $n$.
+\end{question}
+
+\begin{question}
+    \begin{itemize}
+        \item[(a)] Prove that for every prime $p$,
+        \begin{equation*}
+            x^{p - 1} - 1 = (x - 1)(x - 2)\cdots(x - (p - 1))
+        \end{equation*}
+        in $\Z_p[x]$.
+        \item[(b)] Prove Wilson's Theorem: For integers $n \geq 2$, $(n - 1)! = n - 1 \bmod n$ if and only if $n$ is a prime.
+    \end{itemize}
+\end{question}
+
+\begin{question}[\textcolor{red}{\emph{10 pts.}}]
+    Let $p$ be a prime.
+    \begin{itemize}
+        \item[(a)] Show that there are $\frac{p(p + 1)}{2}$ reducible polynomials over $\Z_p$ of the form $x^2 + ax + b$.
+        \item[(b)] Determine the number of irreducible polynomials over $\Z_p$ of the form $x^2 + ax + b$.
+        \item[(c)] Show that there exists a field of order $p^2$, for every prime $p$.
+        \item[(d)] Construct a finite field with four elements. Give the addition and multiplication table of your field.
+    \end{itemize}
+\end{question}
+
+\begin{question}
+    \begin{itemize}
+        \item[(a)] Prove the Rational Root Theorem: Let $f(x) = c_nx^n + c_{n - 1}x^{n - 1} + \cdots + c_0 \in \Z[x]$ with $c_n \neq 0$. If $f\left(\frac{a}{b}\right) = 0$ for some relatively prime integers $a$ and $b$, then $a \mid c_0$ and $b \mid c_n$.
+        \item[(b)] Use (a) to prove that if $r$ is a real number such that $r + \frac{1}{r}$ is an odd integer, then $r \notin \Q$.
+    \end{itemize}
+\end{question}
+
+\begin{question}[\textcolor{red}{\emph{5 pts.}}]
+    Either prove that $f(x) = 3x^5 - 4x^4 + 7x^3 + 16x^2 - 2$ is irreducible over $\Q$ or factor it into a product of irreducible factors in $\Q[x]$.
+\end{question}
+
+\begin{question}[\textcolor{red}{\emph{Bonus 6 pts.}}]
+    Complete the questions specified on Page 5 of Test 1.
+\end{question}
+
+\end{document}
